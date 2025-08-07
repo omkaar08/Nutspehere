@@ -51,7 +51,9 @@ NutsSphere is a premium superfood brand specializing in organic nuts, seeds, dri
 
 ## Live Website
 
-Visit our website: [NutsSphere - A Sphere of Superfoods](https://github.com/yourusername/nutspehere)
+Visit our website: [NutsSphere - A Sphere of Superfoods](https://omkar8-creater.github.io/nutspehere_website/)
+
+**Repository**: [GitHub Repository](https://github.com/Omkar8-creater/nutspehere_website)
 
 ---
 
