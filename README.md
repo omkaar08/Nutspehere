@@ -42,12 +42,6 @@ NutsSphere is a premium superfood brand specializing in organic nuts, seeds, dri
 - FontAwesome Icons
 - WhatsApp Business API
 
-## Contact Information
-
-- **Email**: sohanankulwar@gmail.com
-- **Phone**: +91 7038979754
-- **WhatsApp**: [Chat with us](https://wa.me/917038979754?text=Hello%20NutsSphere!%20I%20would%20like%20to%20know%20more%20about%20your%20premium%20superfoods.)
-- **Location**: Nanded, Maharashtra, India
 
 ## Live Website
 
