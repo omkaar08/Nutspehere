@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - NutsSphere</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Admin Login Page -->
+    <div id="adminLoginPage" class="admin-page">
+        <div class="admin-login-container">
+            <div class="admin-login-card">
+                <img src="images/final_nutsphere_logo_01-removebg-preview.png" alt="NutsSphere Logo" class="admin-logo">
+                <h1>Admin Dashboard</h1>
+                <p class="admin-subtitle">Seller & Administrator Login</p>
+                
+                <form id="adminLoginForm" class="admin-login-form">
+                    <div class="form-group">
+                        <label for="adminUsername">
+                            <i class="fas fa-user"></i> Username
+                        </label>
+                        <input type="text" id="adminUsername" required placeholder="Enter admin username">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="adminPassword">
+                            <i class="fas fa-lock"></i> Password
+                        </label>
+                        <input type="password" id="adminPassword" required placeholder="Enter password">
+                    </div>
+                    
+                    <button type="submit" class="btn-admin-login">
+                        <i class="fas fa-sign-in-alt"></i> Login to Dashboard
+                    </button>
+                </form>
+                
+                <div class="admin-help">
+                    <p><strong>Default Credentials:</strong></p>
+                    <p>Username: <code>admin</code></p>
+                    <p>Password: <code>nutsphere2025</code></p>
+                    <small><i class="fas fa-info-circle"></i> Change password after first login</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="adminDashboard" class="admin-page" style="display: none;">
+        <!-- Header -->
+        <header class="admin-header">
+            <div class="admin-header-content">
+                <div class="admin-brand">
+                    <img src="images/final_nutsphere_logo_01-removebg-preview.png" alt="Logo" class="header-logo">
+                    <h1>NutsSphere Admin</h1>
+                </div>
+                <div class="admin-user-menu">
+                    <span id="adminUserName">Admin</span>
+                    <button onclick="logoutAdmin()" class="btn-logout">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <nav class="admin-nav">
+                <a href="#" onclick="showAdminSection('dashboard')" class="nav-item active">
+                    <i class="fas fa-chart-line"></i> Dashboard
+                </a>
+                <a href="#" onclick="showAdminSection('orders')" class="nav-item">
+                    <i class="fas fa-shopping-bag"></i> Orders
+                    <span class="badge" id="newOrdersBadge">0</span>
+                </a>
+                <a href="#" onclick="showAdminSection('customers')" class="nav-item">
+                    <i class="fas fa-users"></i> Customers
+                </a>
+                <a href="#" onclick="showAdminSection('products')" class="nav-item">
+                    <i class="fas fa-box"></i> Products
+                </a>
+                <a href="#" onclick="showAdminSection('stock')" class="nav-item">
+                    <i class="fas fa-warehouse"></i> Stock Management
+                </a>
+                <a href="#" onclick="showAdminSection('settings')" class="nav-item">
+                    <i class="fas fa-cog"></i> Settings
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <!-- Dashboard Section -->
+            <section id="section-dashboard" class="admin-section active">
+                <h2>Dashboard Overview</h2>
+                
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #4CAF50;">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3 id="totalRevenue">₹0</h3>
+                            <p>Total Revenue</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #2196F3;">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3 id="totalOrders">0</h3>
+                            <p>Total Orders</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #FF9800;">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3 id="totalCustomers">0</h3>
+                            <p>Total Customers</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #F44336;">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3 id="lowStockCount">0</h3>
+                            <p>Low Stock Items</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Orders -->
+                <div class="dashboard-section">
+                    <h3>Recent Orders</h3>
+                    <div id="recentOrdersList" class="orders-table-container">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Top Products -->
+                <div class="dashboard-section">
+                    <h3>Top Selling Products</h3>
+                    <div id="topProductsList" class="top-products-grid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Orders Section -->
+            <section id="section-orders" class="admin-section">
+                <h2>All Orders</h2>
+                
+                <div class="section-actions">
+                    <div class="filter-group">
+                        <label>Filter by Status:</label>
+                        <select id="orderStatusFilter" onchange="filterOrders()">
+                            <option value="all">All Orders</option>
+                            <option value="pending">Pending</option>
+                            <option value="processing">Processing</option>
+                            <option value="shipped">Shipped</option>
+                            <option value="delivered">Delivered</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                    
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="orderSearch" placeholder="Search by Order ID or Customer" oninput="searchOrders()">
+                    </div>
+                </div>
+
+                <div id="ordersTableContainer" class="orders-table-container">
+                    <!-- Populated by JS -->
+                </div>
+            </section>
+
+            <!-- Customers Section -->
+            <section id="section-customers" class="admin-section">
+                <h2>Customer Management</h2>
+                
+                <div class="section-actions">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="customerSearch" placeholder="Search customers..." oninput="searchCustomers()">
+                    </div>
+                </div>
+
+                <div id="customersTableContainer" class="customers-table-container">
+                    <!-- Populated by JS -->
+                </div>
+            </section>
+
+            <!-- Products Section -->
+            <section id="section-products" class="admin-section">
+                <h2>Product Management</h2>
+                
+                <div class="section-actions">
+                    <button class="btn-primary" onclick="showAddProductModal()">
+                        <i class="fas fa-plus"></i> Add New Product
+                    </button>
+                </div>
+
+                <div id="productsTableContainer" class="products-table-container">
+                    <!-- Populated by JS -->
+                </div>
+            </section>
+
+            <!-- Stock Management Section -->
+            <section id="section-stock" class="admin-section">
+                <h2>Stock Management</h2>
+                
+                <div class="alert alert-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span id="lowStockAlert">Monitor low stock items and update inventory</span>
+                </div>
+
+                <div id="stockTableContainer" class="stock-table-container">
+                    <!-- Populated by JS -->
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="section-settings" class="admin-section">
+                <h2>Admin Settings</h2>
+                
+                <div class="settings-card">
+                    <h3>Change Password</h3>
+                    <form id="changePasswordForm" class="settings-form">
+                        <div class="form-group">
+                            <label>Current Password</label>
+                            <input type="password" id="currentPassword" required>
+                        </div>
+                        <div class="form-group">
+                            <label>New Password</label>
+                            <input type="password" id="newPassword" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Confirm New Password</label>
+                            <input type="password" id="confirmPassword" required>
+                        </div>
+                        <button type="submit" class="btn-primary">Update Password</button>
+                    </form>
+                </div>
+
+                <div class="settings-card">
+                    <h3>Store Information</h3>
+                    <form id="storeInfoForm" class="settings-form">
+                        <div class="form-group">
+                            <label>Store Name</label>
+                            <input type="text" id="storeName" value="NutsSphere">
+                        </div>
+                        <div class="form-group">
+                            <label>Contact Email</label>
+                            <input type="email" id="storeEmail" value="sohanankulwar@gmail.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Contact Phone</label>
+                            <input type="tel" id="storePhone" value="+91 7038979754">
+                        </div>
+                        <button type="submit" class="btn-primary">Save Changes</button>
+                    </form>
+                </div>
+
+                <div class="settings-card danger-zone">
+                    <h3>Danger Zone</h3>
+                    <button class="btn-danger" onclick="clearAllData()">
+                        <i class="fas fa-trash"></i> Clear All Test Data
+                    </button>
+                    <p class="help-text">This will clear all orders, customers, and reset the system. Use with caution!</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Order Details Modal -->
+    <div id="orderDetailsModal" class="modal">
+        <div class="modal-content large">
+            <span class="close" onclick="closeOrderDetails()">&times;</span>
+            <div id="orderDetailsContent">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <script src="admin-script.js"></script>
+</body>
+</html>

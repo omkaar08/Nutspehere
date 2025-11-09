@@ -704,6 +704,11 @@ function placeOrder() {
             items: [...appState.cart],
             shippingAddress: appState.shippingAddress,
             paymentMethod: appState.paymentMethod,
+            customerInfo: {
+                name: appState.user.name,
+                email: appState.user.email,
+                phone: appState.user.phone || appState.shippingAddress?.phone || 'N/A'
+            },
             subtotal: subtotal,
             shipping: shipping,
             total: total,
@@ -712,6 +717,11 @@ function placeOrder() {
         
         appState.orders.push(order);
         localStorage.setItem('orders', JSON.stringify(appState.orders));
+        
+        // Save to allOrders for admin view
+        const allOrders = JSON.parse(localStorage.getItem('allOrders') || '[]');
+        allOrders.push(order);
+        localStorage.setItem('allOrders', JSON.stringify(allOrders));
         
         // Clear cart
         appState.cart = [];
